@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package fastgrpctest.v1;
+
+option go_package = "./;fastGrpcTestPb";
+
+service FastGrpcTestService {
+  rpc Ping(PingRequest) returns (PingResponse);
+  rpc Sleep(SleepRequest) returns (SleepResponse);
+  rpc Sub(stream SubRequest) returns (stream SubResponse);
+}
+
+message PingRequest {
+  int32 val = 1;
+}
+
+message PingResponse {
+  int32 val = 1;
+}
+
+message SleepRequest {
+  int64 duration = 1;
+}
+
+message SleepResponse {
+  int64 duration = 1;
+  int64 now = 2;
+}
+
+message SubRequest {
+  int64 pubInterval = 1;
+}
+
+message SubResponse {
+  int64 currentTime = 1;
+}
